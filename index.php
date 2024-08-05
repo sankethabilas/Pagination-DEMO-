@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="bootstrap.css">
 </head>
 
-<body>
+<body onload="loadPage(0);">
 
     <div class="container">
         <div class="row">
