@@ -18,7 +18,7 @@ $result_per_page = 4;
 $number_of_pages = ceil($user_num / $result_per_page);
 
 $page_result = ($pageNo - 1) * $result_per_page;
-$q2 = $q . "LIMIT" . $result_per_page . "OFFSET" . $page_result;
+$q2 = $q . " LIMIT " . $result_per_page . " OFFSET " . $page_result;
 
 $selected_rs = $con->query($q2);
 $selected_num = $selected_rs->num_rows;
@@ -89,17 +89,39 @@ $selected_num = $selected_rs->num_rows;
                                                                                                     ?> aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+<?php
+       
+       for ($y=1; $y <=$number_of_pages ; $y++) { 
+        if ($y==$pageNo) {
+            ?>
+             </li>
+                <li class="page-item active">
+                    <a class="page-link" onclick="loadpage(<?php echo ($y)?>);"><?php echo ($y)?></a>
+            </li>
+            <?php
+        } else {
+            ?>
+             </li>
+                <li class="page-item active">
+                    <a class="page-link" onclick="loadpage(<?php echo ($y)?>);"><?php echo ($y)?></a>
+            </li>
+            <?php
+        }
+        
+       }
+   
+?>
+
+               
+               
                 <li class="page-item">
                     <a class="page-link" <?php
 
-                                            if ($pageNo <= $number_of_pages) {
+                                            if ($pageNo >= $number_of_pages) {
                                                 echo "#";
                                             } else {
-                                            ?> onclick="loadPage(<?php echo ($pageNo + 1); ?>);" <?php
+                                            ?> onclick="loadPage(<?php echo ($pageNo + 1) ?>);" <?php
 
                                                                                                 }
 
